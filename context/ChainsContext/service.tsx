@@ -121,9 +121,9 @@ export const useChainFromRegistry = (chain: ChainInfo, chains: ChainItems) => {
           return setChainFromRegistryError(`Unit not found for ${firstAsset.display}`);
         }
 
-        const feeToken = chainItem.fees.fee_tokens.find(
-          (token) => token.denom == firstAssetDenom,
-        ) ?? {
+       const feeToken = (chainItem.fees?.fee_tokens || [uthiol]).find(
+          (token) => token.denom === firstAssetDenom
+        ) || {
           denom: firstAssetDenom,
         };
         const gasPrice =
